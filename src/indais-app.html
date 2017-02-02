@@ -1,0 +1,206 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-drawer-panel/paper-drawer-panel.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button-light.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<!--<link rel="import" href="my-icons.html">-->
+
+<dom-module id="indais-app">
+  <template>
+    <style is="custom-style">
+      :host {
+        display: block;
+          height: 100%
+      }
+        
+        *{
+            box-sizing: border-box;
+        }
+ 
+      #paperDrawerPanel [main] {
+        text-align: center;
+        background-color: var(--google-grey-100);
+        overflow: scroll;
+          
+      }
+      #paperDrawerPanel [drawer] {
+        border-right: 1px solid var(--google-grey-300);
+        background-color: #252525;
+      }
+        paper-icon-button.drawerToggle {
+            -ms-transform: rotate(90deg); /* IE 9 */
+            -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+            transform: rotate(90deg);
+            background-color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 0px; 
+            padding: 0px;
+            color: #1AAFF3;
+            margin: 0px;
+            @apply(--layout-self-center);
+            @apply(--layout-horizontal);
+        }
+        #drawerContents {
+/*            height: 100%;*/
+            width: 100%;
+            @apply(--layout-vertical);
+            @apply(--layout-start-justified);
+        }
+        .navHeader {
+            color: #C2C2C2;
+            font-weight: 300;
+            padding-left: 14px;
+            text-transform: uppercase;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        .navLink {
+            width: 100%;
+            padding-left: 34px;
+            margin: 0px;
+            border-radius: 0px;
+            height: 34px;
+            padding-top: 5px;
+            text-shadow: 0px 2px 2px rgba(0, 0, 0, 75);
+        }
+        .navLink_b {
+            width: 100%;
+            padding-left: 14px;
+            margin: 0px;
+            border-radius: 0px;
+            height: 34px;
+            padding-top: 5px;
+            text-shadow: 0px 2px 2px rgba(0, 0, 0, 75);
+        }
+        .navLink:hover{
+            font-weight: 600;
+        }
+        a {
+            font-family: "Proxima Nova";
+            font-size: 16px;
+            font-weight: 300;
+            color: white;
+            text-decoration: none;
+            
+        }
+        .iron-selected .navLink {
+            background-color: rgba(3, 169, 244, 75);
+            border-left: solid 3px #19BFEF;
+            font-weight: 600;
+            padding-left: 31px !important;
+            text-shadow: 0px 2px 2px rgba(0, 0, 0, 40);
+        }
+    
+    </style>
+
+    <app-location route="{{route}}"></app-location>
+    <app-route
+        route="{{route}}"
+        pattern="/:page"
+        data="{{routeData}}"
+        tail="{{subroute}}"></app-route>
+
+   
+    <paper-drawer-panel id="paperDrawerPanel" drawer-width="208px">
+      <div drawer >
+      
+       <div id="drawerContents">
+<!--        <paper-icon-button class="drawerToggle" icon="arrow-drop-down" title="drawerToggle"></paper-icon-button>-->
+        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+                <div class="navHeader">Home</div>
+            <a name="dashboard" href="/dashboard"><div class="navLink">Dashboard</div></a>
+            <a name="datasets" href="/datasets"><div class="navLink">Datasets</div></a>
+            <a name="workspaces" href="/workspaces"><div class="navLink">Workspaces</div></a>
+            <a name="learning-models" href="/learning-models"><div class="navLink">Learning Models</div></a>
+            <a name="all" href="/all"><div class="navLink">All Activity</div></a>
+                <div class="navHeader">User Management</div>
+            <a name="users" href="/users"><div class="navLink">Users</div></a>
+            <a name="user-groups" href="/user-groups"><div class="navLink">User Groups</div></a>
+            <a name="database-access" href="/database-access"><div class="navLink">Database Access</div></a>
+            <a name="profile" href="/profile"><div class="navLink_b">My Profile</div></a>
+            <a name="log-out" href="/log-out"><div class="navLink_b">Log Out</div></a>
+        </iron-selector>
+<!--        <button tabindex="0" paper-drawer-toggle>Close drawer</button>-->
+      </div>
+      </div>
+      <div main>
+       <div size="100">
+        <iron-pages
+            selected="[[page]]"
+            attr-for-selected="name"
+            role="main">
+          <my-dashboard name="dashboard"></my-dashbuard>
+          <my-datasets name="datasets"></my-datasets>
+          <my-workspaces name="workspaces"></my-workspaces>
+          <my-learning-models name="learning-models"></my-learning-models>
+          <my-all name="all"></my-all>
+          <my-users name="users"></my-users>
+          <my-user-groups name="user-groups"></my-user-groups>
+          <my-database-access name="database-access"></my-database-access>
+          <my-profile name="profile"></my-profile>
+          <my-log-out name="log-out"></my-log-out>
+        </iron-pages>
+        </div>
+      </div>
+    </paper-drawer-panel>
+ 
+  </template>
+
+  <script>
+    Polymer({
+      is: 'indais-app',
+
+      properties: {
+        page: {
+          type: String,
+          reflectToAttribute: true,
+          observer: '_pageChanged',
+        },
+      },
+
+      observers: [
+        '_routePageChanged(routeData.page)',
+      ],
+
+      _routePageChanged: function(page) {
+        this.page = page || 'dashboard';
+
+      },
+
+      _pageChanged: function(page) {
+        // Load page import on demand. Show 404 page if fails
+        var resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
+        this.importHref(resolvedPageUrl, null, this._showPage404, true);
+      },
+//
+//      _showPage404: function() {
+//        this.page = 'view404';
+//      },
+    });
+  </script>
+</dom-module>

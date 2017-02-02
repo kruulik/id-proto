@@ -1,0 +1,83 @@
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/iron-image/iron-image.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-workspaces-card">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+            }
+            
+            paper-card {
+                height: 270px;
+                width: 230px;
+                margin: 10px;
+                flex-shrink: 0;
+            }
+            iron-image {
+                height: 198px;
+                width: 100%;
+                margin: 0px 0px 8px 0px;
+            }
+            #container {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: scroll;
+                width: 100%;
+                flex-shrink: 0;
+            }
+            #title {
+                color: #464646;
+                font-weight: 600;
+            }
+            p {
+                float: left;
+                text-align: left;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                width: 160px;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            #menuButton {
+                height: 34px;
+                width: 34px;
+/*                margin: 10px;*/
+                background-color: dimgray;
+                float: right;
+                flex-shrink: 0;
+            }
+           
+        </style>
+
+        <iron-ajax auto url="workspaces.json" handle-as="json" last-response="{{workspacesCard}}"></iron-ajax>
+        <div id="container">
+            <template is="dom-repeat" items="{{workspacesCard}}">
+                <paper-card>
+                    <iron-image src="{{item.image}}"></iron-image>
+                    <p id="title">{{item.title}}</p>
+                    <p id="ownership">{{item.ownership}}</p>
+<!--                    <div id="menuButton"></div>-->
+                </paper-card>
+
+            </template>
+
+        </div>
+
+    </template>
+
+    <script>
+        Polymer({
+            is: 'my-workspaces-card',
+            properties: {
+                image: String,
+                title: String,
+                ownership: String,
+            }
+        });
+    </script>
+</dom-module>

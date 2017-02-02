@@ -1,0 +1,64 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-highlights-card">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+            }
+            
+            paper-card {
+                height: 40px;
+                width: 100%;
+                margin: 5px 0px 5px 0px;
+                padding: 10px 16px 10px 16px;
+            }
+            
+            .left {
+                float: left;
+            }
+            
+            .right {
+                float: right;
+            }
+            
+            a {
+                text-decoration: underline;
+                color: #03A9F4;
+            }
+            
+            p span {
+                margin: 0px;
+                font-weight: 500;
+            }
+        </style>
+
+        <iron-ajax auto url="activity.json" handle-as="json" last-response="{{recentEvents}}"></iron-ajax>
+        <div>
+            <template is="dom-repeat" items="{{recentEvents}}">
+                <paper-card>
+                    <p class="left"><span style="font-weight: 500;">{{item.name}}</span>{{item.action}}{{item.object}}</p>
+                    <p class="right">{{item.date}}</p>
+                </paper-card>
+
+            </template>
+
+        </div>
+
+    </template>
+
+    <script>
+        Polymer({
+            is: 'my-highlights-card',
+            properties: {
+                name: String,
+                action: String,
+                object: String,
+                date: String,
+            }
+        });
+    </script>
+</dom-module>

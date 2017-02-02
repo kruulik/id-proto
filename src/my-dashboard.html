@@ -1,0 +1,83 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="my-highlights-card.html">
+<link rel="import" href="my-workspaces-card.html">
+
+<dom-module id="my-dashboard">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+                padding: 32px;
+            }
+            
+            .sectionHeader {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+                /*                flex-wrap: nowrap;*/
+                /*                height: 30px;*/
+            }
+            
+            .divider {
+                height: 1px;
+                width: 100%;
+                box-shadow: 0px 1px 1px #ffffff;
+                background-color: #C2C2C2;
+                /*                align-self: baseline;*/
+            }
+            
+            .sectionHeader h4 {
+                flex-shrink: 0;
+                margin: 0px 10px 0px 0px;
+                /*                align-self: center;*/
+            }
+            
+            .sectionHeader:nth-child(n+2){
+                margin-top: 45px;
+            }
+        </style>
+
+        <div id="dashboardContent">
+
+        <div class="sectionHeader">
+            <h4>frequent tasks</h4>
+            <div class="divider"></div>
+        </div>
+        <div class="sectionHeader">
+            <h4>quick view</h4>
+            <div class="divider"></div>
+        </div>
+        <h5>Add Charts</h5>
+        <p>You haven’t pinned any charts yet. Would you like to add charts from your saved workspaces?</p>
+        <h6>Get Started</h6>
+        <div class="sectionHeader">
+            <h4>favorite workspaces</h4>
+            <div class="divider"></div>
+        </div>
+        <my-workspaces-card></my-workspaces-card>
+        <div class="sectionHeader">
+            <h4>activity highlights</h4>
+            <div class="divider"></div>
+        </div>
+        <my-highlights-card></my-highlights-card>
+</div>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'my-dashboard',
+        });
+    </script>
+</dom-module>

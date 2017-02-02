@@ -1,0 +1,22 @@
+[
+    {
+        "image": "images/workspaces_1.png",
+        "title": "A Yodeler went yodeling",
+        "ownership": "Read Only"
+    },
+    {
+        "image": "images/workspaces_2.png",
+        "title": "Bambooyah",
+        "ownership": "Edit Mode"
+    },
+    {
+        "image": "images/workspaces_3.png",
+        "title": "There Lived a Hobbit",
+        "ownership": "Owner"
+    },
+    {
+        "image": "images/workspaces_4.png",
+        "title": "A Third Workspace",
+        "ownership": "Read Only"
+    }
+]

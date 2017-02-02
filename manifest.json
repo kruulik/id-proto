@@ -1,0 +1,20 @@
+{
+  "name": "Indais Prototype",
+  "short_name": "Indais",
+  "start_url": "/?homescreen=1",
+  "display": "standalone",
+  "theme_color": "#19BFEF",
+  "background_color": "#19BFEF",
+  "icons": [
+    {
+      "src": "images/manifest/Indais_Icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/manifest/Indais_Icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
