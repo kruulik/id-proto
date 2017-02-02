@@ -67,7 +67,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             @apply(--layout-horizontal);
         }
         #drawerContents {
-/*            height: 100%;*/
             width: 100%;
             @apply(--layout-vertical);
             @apply(--layout-start-justified);
@@ -131,7 +130,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div drawer >
       
        <div id="drawerContents">
-<!--        <paper-icon-button class="drawerToggle" icon="arrow-drop-down" title="drawerToggle"></paper-icon-button>-->
+
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
                 <div class="navHeader">Home</div>
             <a name="dashboard" href="/dashboard"><div class="navLink">Dashboard</div></a>
@@ -146,7 +145,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <a name="profile" href="/profile"><div class="navLink_b">My Profile</div></a>
             <a name="log-out" href="/log-out"><div class="navLink_b">Log Out</div></a>
         </iron-selector>
-<!--        <button tabindex="0" paper-drawer-toggle>Close drawer</button>-->
+
+     
       </div>
       </div>
       <div main>
@@ -154,6 +154,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <iron-pages
             selected="[[page]]"
             attr-for-selected="name"
+            fallback-selection="view404"
             role="main">
           <my-dashboard name="dashboard"></my-dashbuard>
           <my-datasets name="datasets"></my-datasets>
@@ -189,11 +190,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ],
 
       _routePageChanged: function(page) {
-        this.page = page || 'dashboard';
+        this.page = page || 'datasets';
       },
 
       _pageChanged: function(page) {
-        // Load page import on demand. Show 404 page if fails
         var resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
         this.importHref(resolvedPageUrl, null, this._showPage404, true);
       },
