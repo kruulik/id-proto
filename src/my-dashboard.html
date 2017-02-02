@@ -9,9 +9,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-image/iron-image.html">
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="my-highlights-card.html">
 <link rel="import" href="my-workspaces-card.html">
+<!--<link rel="import" href="my-datasets-card.html">-->
 
 <dom-module id="my-dashboard">
     <template>
@@ -26,6 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 display: flex;
                 align-items: center;
                 margin-bottom: 10px;
+                margin-top: 10px;
                 /*                flex-wrap: nowrap;*/
                 /*                height: 30px;*/
             }
@@ -44,35 +48,95 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 /*                align-self: center;*/
             }
             
-            .sectionHeader:nth-child(n+2){
+            #dashboardContent .container:nth-child(n+2) {
                 margin-top: 45px;
+            }
+            
+            .tasksContainer paper-button {
+                height: 152px;
+                width: 152px;
+                background-color: white;
+                margin: 5px;
+                flex-shrink: 0;
+                display: flex;
+                flex-direction: column;
+                font-size: 14px;
+                margin-bottom: 10px;
+                margin-top: 0px;
+                font-size: 14px;
+            }
+            
+            paper-button.squareCard:hover {
+                background-color: dodgerblue;
+                color: white;
+            }
+            
+            .tasksContainer {
+                display: flex;
+                justify-content: center;
+                flex-wrap: nowrap;
+                overflow-x: scroll;
+                width: 100%;
+            }
+            
+            .tasksContainer iron-image {
+                height: 60px;
+                width: 60px;
+                margin: auto;
+                margin-top: 30px;
             }
         </style>
 
         <div id="dashboardContent">
 
-        <div class="sectionHeader">
-            <h4>frequent tasks</h4>
-            <div class="divider"></div>
+            <div class="container">
+                <div class="sectionHeader">
+                    <h4>frequent tasks</h4>
+                    <div class="divider"></div>
+                </div>
+                <div class="tasksContainer">
+                    <paper-button raised="1" class="squareCard">
+                        <iron-image sizing="contain" src="../images/new_workspace.png"></iron-image>
+                        New Workspace</paper-button>
+                    <paper-button raised="1" class="squareCard">
+                        <iron-image sizing="contain" src="../images/new_learning_models.png"></iron-image>
+                        New Learning Model</paper-button>
+                    <paper-button raised="1" class="squareCard" href="/datasets" name="datasets">
+                        <iron-image sizing="contain" src="../images/add_datasource.png"></iron-image>
+                        Add Datasource</paper-button>
+                    <paper-button raised="1" class="squareCard">
+                        <iron-image sizing="contain" src="../images/share_workspace.png"></iron-image>
+                        Share Workspace</paper-button>
+                    <paper-button raised="1" class="squareCard">
+                        <iron-image sizing="contain" src="../images/add_user.png"></iron-image>
+                        Add User</paper-button>
+                </div>
+            </div>
+            <div class="container">
+                <div class="sectionHeader">
+                    <h4>quick view</h4>
+                    <div class="divider"></div>
+                </div>
+                <h5>Add Charts</h5>
+                <p>You haven’t pinned any charts yet. Would you like to add charts from your saved workspaces?</p>
+                <h6>Get Started</h6>
+            </div>
+
+            <div class="container">
+                <div class="sectionHeader">
+                    <h4>favorite workspaces</h4>
+                    <div class="divider"></div>
+                </div>
+                <my-workspaces-card></my-workspaces-card>
+            </div>
+            <div class="container">
+                <div class="sectionHeader">
+                    <h4>activity highlights</h4>
+                    <div class="divider"></div>
+                </div>
+                <my-highlights-card></my-highlights-card>
+            </div>
         </div>
-        <div class="sectionHeader">
-            <h4>quick view</h4>
-            <div class="divider"></div>
-        </div>
-        <h5>Add Charts</h5>
-        <p>You haven’t pinned any charts yet. Would you like to add charts from your saved workspaces?</p>
-        <h6>Get Started</h6>
-        <div class="sectionHeader">
-            <h4>favorite workspaces</h4>
-            <div class="divider"></div>
-        </div>
-        <my-workspaces-card></my-workspaces-card>
-        <div class="sectionHeader">
-            <h4>activity highlights</h4>
-            <div class="divider"></div>
-        </div>
-        <my-highlights-card></my-highlights-card>
-</div>
     </template>
 
     <script>

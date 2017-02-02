@@ -27,6 +27,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <!--<link rel="import" href="my-icons.html">-->
+<!--<link rel="import" href="my-datasets.html">-->
 
 <dom-module id="indais-app">
   <template>
@@ -73,7 +74,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         .navHeader {
             color: #C2C2C2;
-            font-weight: 300;
+            font-weight: 400;
             padding-left: 14px;
             text-transform: uppercase;
             font-size: 14px;
@@ -101,9 +102,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             font-weight: 600;
         }
         a {
-            font-family: "Proxima Nova";
+            font-family: "Open Sans";
             font-size: 16px;
-            font-weight: 300;
+            font-weight: 400;
             color: white;
             text-decoration: none;
             
@@ -189,7 +190,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       _routePageChanged: function(page) {
         this.page = page || 'dashboard';
-
       },
 
       _pageChanged: function(page) {
@@ -197,10 +197,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
         this.importHref(resolvedPageUrl, null, this._showPage404, true);
       },
-//
-//      _showPage404: function() {
-//        this.page = 'view404';
-//      },
+
+      _showPage404: function() {
+        this.page = 'view404';
+      },
     });
   </script>
 </dom-module>
