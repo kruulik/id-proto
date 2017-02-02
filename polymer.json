@@ -3,7 +3,8 @@
   "shell": "src/indais-app.html",
   "fragments": [
    "src/my-dashboard.html",
-   "src/my-datasets.html"
+   "src/my-datasets.html",
+   "src/my-workspaces.html"
       
   ],
   "sourceGlobs": [
