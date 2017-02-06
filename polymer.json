@@ -1,6 +1,6 @@
 {
   "entrypoint": "index.html",
-  "shell": "src/indais-app.html",
+  "shell": "src/id-app.html",
   "fragments": [
    "src/my-dashboard.html",
    "src/my-datasets.html",

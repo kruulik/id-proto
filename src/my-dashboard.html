@@ -35,7 +35,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
             
             .divider {
-                height: 1px;
+                height: 2px;
                 width: 100%;
                 box-shadow: 0px 1px 1px #ffffff;
                 background-color: #C2C2C2;
@@ -101,9 +101,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <paper-button raised="1" class="squareCard">
                         <iron-image sizing="contain" src="../images/new_learning_models.png"></iron-image>
                         New Learning Model</paper-button>
-                    <paper-button raised="1" class="squareCard" href="/datasets" name="datasets">
-                        <iron-image sizing="contain" src="../images/add_datasource.png" href="my-datasets.html"></iron-image>
+                        
+                    <paper-button raised="1" class="squareCard" name="datasets" on-click="_onDatasetsClick">
+                        <iron-image sizing="contain" src="../images/add_datasource.png"></iron-image>
                         Add Datasource</paper-button>
+                        
                     <paper-button raised="1" class="squareCard">
                         <iron-image sizing="contain" src="../images/share_workspace.png"></iron-image>
                         Share Workspace</paper-button>
@@ -142,6 +144,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script>
         Polymer({
             is: 'my-dashboard',
+            
+            _onDatasetsClick: function (event) {
+                var pages = this.$$('#mainPages');
+                this.$.pages.selected = 1;
+            },
         });
     </script>
 </dom-module>
