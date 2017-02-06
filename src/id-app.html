@@ -29,7 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <!--<link rel="import" href="my-icons.html">-->
 <!--<link rel="import" href="my-datasets.html">-->
 
-<dom-module id="indais-app">
+<dom-module id="id-app">
   <template>
     <style is="custom-style">
       :host {
@@ -159,7 +159,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             selected="[[page]]"
             attr-for-selected="name"
             fallback-selection="view404"
-            role="main">
+            role="main"
+            id="mainPages">
           <my-dashboard name="dashboard"></my-dashboard>
           <my-datasets name="datasets"></my-datasets>
           <my-workspaces name="workspaces"></my-workspaces>
@@ -179,7 +180,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <script>
     Polymer({
-      is: 'indais-app',
+      is: 'id-app',
 
       properties: {
         page: {
