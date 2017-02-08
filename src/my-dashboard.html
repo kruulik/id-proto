@@ -14,6 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="my-highlights-card.html">
 <link rel="import" href="my-workspaces-card.html">
+<link rel="import" href="button-card.html">
 <!--<link rel="import" href="my-datasets-card.html">-->
 
 <dom-module id="my-dashboard">
@@ -73,7 +74,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             
             .tasksContainer {
                 display: flex;
-                justify-content: center;
+/*                justify-content: center;*/
                 flex-wrap: nowrap;
                 overflow-x: scroll;
                 width: 100%;
@@ -95,23 +96,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <div class="divider"></div>
                 </div>
                 <div class="tasksContainer">
-                    <paper-button raised="1" class="squareCard">
-                        <iron-image sizing="contain" src="../images/new_workspace.png"></iron-image>
-                        New Workspace</paper-button>
-                    <paper-button raised="1" class="squareCard">
-                        <iron-image sizing="contain" src="../images/new_learning_models.png"></iron-image>
-                        New Learning Model</paper-button>
-                        
-                    <paper-button raised="1" class="squareCard" name="datasets" on-click="_onDatasetsClick">
-                        <iron-image sizing="contain" src="../images/add_datasource.png"></iron-image>
-                        Add Datasource</paper-button>
-                        
-                    <paper-button raised="1" class="squareCard">
-                        <iron-image sizing="contain" src="../images/share_workspace.png"></iron-image>
-                        Share Workspace</paper-button>
-                    <paper-button raised="1" class="squareCard">
-                        <iron-image sizing="contain" src="../images/add_user.png"></iron-image>
-                        Add User</paper-button>
+                    <!--Data-binding is used to pass {{img}} and {{caption}} attributes to the button-card element, which handles styling and hover-states-->
+                    <button-card img="../images/new_workspaces.png" caption="New Workspace" color="#03A9F4"></button-card>
+                    <button-card img="../images/new_learning_models.png" caption="New Learning Model"></button-card>
+                    <button-card img="../images/add_datasource.png" caption="Add Datasource" on-tap="_datasets"></button-card>
+                    <button-card img="../images/share_workspace.png" caption="Share Workspace"></button-card>
+                    <button-card img="../images/add_user.png" caption="Add User"></button-card>
                 </div>
             </div>
             <div class="container">
@@ -145,10 +135,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         Polymer({
             is: 'my-dashboard',
             
-            _onDatasetsClick: function (event) {
-                var pages = this.$$('#mainPages');
-                this.$.pages.selected = 1;
+            //This does not update the URL... something to do with app-route or app-location in the parent node. Need to review, but so far does not cause issues. 
+            _datasets: function (page) {
+                var page = this.parentNode;
+                page.selected = 'datasets';
+                console.log(page);
             },
+            
+//            _onDatasetsClick: function (event) {
+//                var pages = this.$$('#mainPages');
+//                var sections = this.$$('#sections');
+//                this.$.pages.selected = 1;
+//            },
         });
     </script>
 </dom-module>

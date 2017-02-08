@@ -1,0 +1,90 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-image/iron-image.html">
+<link rel="import" href="shared-styles.html">
+
+<!--Also called "Ingest Data"-->
+
+<dom-module id="button-card">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+                height: 100%;
+            }
+            
+            #card {
+                height: 152px;
+                width: 152px;
+                background-color: white;
+                margin: 5px;
+                flex-shrink: 0;
+                display: flex;
+                flex-direction: column;
+                font-size: 14px;
+                margin-bottom: 10px;
+                margin-top: 0px;
+                font-size: 14px;
+                font-weight: 400;
+                color: #636363;
+                line-height: 1.2em;
+            }
+         
+            iron-image {
+                height: 60px;
+                width: 60px;
+                margin: auto;
+                margin-top: 30px;
+            }
+        </style>
+
+        <!--Each card should have it's own background color on hover; would be best to data-bind it like {{img}} and {{caption}}-->
+
+
+        <paper-button id="card" raised="1" on-mouseout="_onMouseOut" on-mouseover="_onMouseOver">
+            <iron-image id="image" sizing="contain" src="{{img}}"></iron-image>
+            {{caption}}</paper-button>
+
+
+    </template>
+
+    <script>
+        Polymer({
+            is: 'button-card',
+
+            properties: {
+                img: String,
+                caption: String,
+                //color: String, <- should color be a string or some other property?
+            },
+            
+
+
+            _onMouseOver: function () {
+                this.$.card.style.backgroundColor = "#03A9F4";
+                this.$.card.style.color = "white";
+                this.$.image.style.filter = "brightness(0) invert(1)";
+            },
+
+            _onMouseOut: function () {
+                this.$.card.style.backgroundColor = "white";
+                this.$.card.style.color = "#636363";
+                this.$.image.style.filter = "brightness(1) invert(0)";
+            },
+
+
+
+
+        });
+    </script>
+</dom-module>
