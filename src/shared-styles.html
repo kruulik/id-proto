@@ -12,80 +12,139 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <!-- shared styles for all views -->
 <dom-module id="shared-styles">
-    <template>
-        <style>
-            :root {
-                --doc-red: #E67181;
-                --doc-blue: #03A9F4;
-                --doc-purple: #5855D7;
-                --doc-green: #5AEBD1;
-                --doc-yellow: #FCD23F;
-                --doc-background: #E9EBED;
-                --doc-drawer-black: #252525;
-                --doc-gray-1: #707070;
-                --doc-gray-2: #636363;
-            }
-            
-            .card {
-                margin: 24px;
-                padding: 16px;
-                color: #757575;
-                border-radius: 5px;
-                background-color: #fff;
-                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-            }
-            
-            .circle {
-                display: inline-block;
-                width: 64px;
-                height: 64px;
-                text-align: center;
-                color: #555;
-                border-radius: 50%;
-                background: red;
-                font-size: 30px;
-                line-height: 64px;
-            }
-            
-            h1 {
-                margin: 16px 0;
-                color: #212121;
-                font-size: 22px;
-            }
-            
-            h4 {
-                text-transform: uppercase;
-                font-weight: 400;
-                color: rgba(0, 0, 0, 50);
-                font-size: 18px;
-            }
-            
-            h5 {
-                text-transform: uppercase;
-                font-weight: 600;
-                color: rgb(99, 99, 99);
-                font-size: 16px;
-                margin-bottom: 0px;
-            }
-            
-            h6 {
-                text-transform: uppercase;
-                font-weight: 500;
-                color: #03A9F4;
-                font-size: 16px;
-                margin-top: 20px;
-                margin-bottom: 20px;
-            }
-            
-            p {
-                font-weight: 400;
-                color: #636363;
-                font-size: 16px;
-                margin-top: 0px;
-                margin-bottom: 0px;
-            }
-            
-          
-        </style>
-    </template>
+  <template>
+    <style>
+      :root {
+        --doc-red: #E67181;
+        --doc-blue: #03A9F4;
+        --doc-light-blue: #F0F8FB;
+        --doc-bright-blue: #19BFEF;
+        --doc-purple: #5855D7;
+        --doc-green: #5AEBD1;
+        --doc-yellow: #FCD23F;
+        --doc-background: #E9EBED;
+        --doc-drawer-black: #252525;
+        --doc-gray-1: #CCCCCC;
+        --doc-gray-2: #636363;
+        --doc-gray-3: #464646;
+      }
+      
+      .card {
+        margin: 24px;
+        padding: 16px;
+        color: #757575;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+      }
+      
+      .circle {
+        display: inline-block;
+        width: 64px;
+        height: 64px;
+        text-align: center;
+        color: #555;
+        border-radius: 50%;
+        background: red;
+        font-size: 30px;
+        line-height: 64px;
+      }
+      
+      h1 {
+        margin: 16px 0;
+        color: #212121;
+        font-size: 22px;
+      }
+      
+      h4 {
+        text-transform: uppercase;
+        font-weight: 400;
+        color: rgba(0, 0, 0, 50);
+        font-size: 16px;
+      }
+      
+      h5 {
+        text-transform: uppercase;
+        font-weight: 400;
+        color: rgb(99, 99, 99);
+        font-size: 16px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+      }
+      
+      h6 {
+        text-transform: uppercase;
+        font-weight: 500;
+        color: #03A9F4;
+        font-size: 16px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      
+      p {
+        font-weight: 400;
+        color: #636363;
+        font-size: 14px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        line-height: 1.2em;
+      }
+      
+      .buttonNav {
+        background-color: #03A9F4;
+        color: white;
+      }
+      
+      .buttonNav:hover {
+        background-color: #19BFEF;
+      }
+      
+      .paperContentBlock {
+        background: white;
+        border-radius: 2px;
+        border: solid 1px rgba(0, 0, 0, .12);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 10px 30px 10px;
+        box-sizing: border-box;
+      }
+      
+      paper-input {
+        margin-left: 10px;
+        margin-right: 10px;
+        --paper-input-container-underline: {
+          border-bottom: 1px solid #03A9F4;
+        }
+        ;
+        --paper-input-container-underline-focus: {
+          border-bottom: 3px solid #19BFEF;
+        }
+        ;
+      }
+      
+      paper-toggle-button {
+        --paper-toggle-button-unchecked-button-color: white;
+        --paper-toggle-button-checked-button-color: white;
+        --paper-toggle-button-checked-bar-color: #03A9F4;
+        --paper-toggle-button-unchecked-button: {
+          border: 1px solid #03A9F4;
+        }
+      }
+      
+      paper-dropdown-menu {
+        text-transform: uppercase;
+        margin-left: 10px;
+        margin-right: 10px;
+        --paper-input-container-underline: {
+          border-bottom: 1px solid #03A9F4;
+        }
+        ;
+        --paper-input-container-underline-focus: {
+          border-bottom: 3px solid #19BFEF;
+        }
+        ;
+      }
+    </style>
+  </template>
 </dom-module>

@@ -1,0 +1,160 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/iron-list/iron-list.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/iron-selector/iron-multi-selectable.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selectable.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selection.html">
+<link rel="import" href="../bower_components/paper-tooltip/paper-tooltip.html">
+<link rel="import" href="shared-styles.html">
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+
+
+<!--Also called "Ingest Data"-->
+
+<dom-module id="datasets-usergroups">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+        width: 100%;
+        overflow-y: scroll;
+        overflow-x: visible;
+      }
+      
+      .icon {
+        --iron-icon-fill-color: rgba(0, 0, 0, .1);
+        --iron-icon-height: 32px;
+        --iron-icon-width: 32px;
+      }
+      
+      .icon.red {
+        --iron-icon-fill-color: var(--doc-red);
+      }
+      
+      .icon.yellow {
+        --iron-icon-fill-color: var(--doc-yellow);
+      }
+      
+      .icon.blue {
+        --iron-icon-fill-color: var(--doc-blue);
+      }
+      
+      .icon.purple {
+        --iron-icon-fill-color: var(--doc-purple);
+      }
+      
+      .icon.green {
+        --iron-icon-fill-color: var(--doc-green);
+      }
+      
+      .icon.blank {
+        --iron-icon-stroke-color: rgba(0, 0, 0, .3);
+        --iron-icon-fill-color: rgba(0, 0, 0, .3);
+      }
+
+      
+      .cell {
+        box-sizing: border-box;
+        color: var(--doc-gray-2);
+        line-height: 2.1em;
+        height: 40px;
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+        justify-content: space-between;
+        border-bottom: solid 1px rgba(0, 0, 0, .12);
+        display: flex;
+        align-items: center;
+        text-align: left;
+        flex-direction: row;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      
+      paper-tooltip {
+        --paper-tooltip-background: rgba(255, 255, 255, .9);
+        height: 60px;
+        width: 240px;
+        border-radius: 2px;
+        display: flex;
+        margin-left: 100px;
+        justify-content: space-between;
+        --paper-tooltip: {
+          box-shadow: 0px 3px 8px rgba(0, 0, 0, .18);
+          border: 1px solid #E1E1E1;
+        }
+        ;
+      }
+    </style>
+
+    <iron-ajax auto url="datasets-usergroups.json" handle-as="json" last-response="{{doc}}"></iron-ajax>
+
+
+
+    <template is="dom-repeat" items="{{doc}}">
+
+      
+
+      <div id$="{{item.id}}" class="cell" on-tap="_show">
+
+        <div class="title">{{item.title}}</div>
+        <iron-icon class="icon" icon="icons:check-circle"></iron-icon>
+
+      </div>
+<!--Does not work in dom-repeat using for= or placing inside parent div. Only first element responds. Should try listening to on-tap event after dom-repeat has attached.-->
+      <paper-tooltip for="{{item.id}}" offset="0" animation-delay="0" >.
+        <iron-icon on-tap="_hide" class="icon red" icon="icons:check-circle"></iron-icon>
+        <iron-icon on-tap="_hide" class="icon yellow" icon="icons:check-circle"></iron-icon>
+        <iron-icon on-tap="_hide" class="icon blue" icon="icons:check-circle"></iron-icon>
+        <iron-icon on-tap="_hide" class="icon purple" icon="icons:check-circle"></iron-icon>
+        <iron-icon on-tap="_hide" class="icon green" icon="icons:check-circle"></iron-icon>
+        <iron-icon on-tap="_hide" class="icon blank" icon="icons:radio-button-unchecked"></iron-icon>
+      </paper-tooltip>
+
+
+    </template>
+
+
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'datasets-usergroups',
+
+      properties: {
+        title: String,
+        id: String
+      },
+
+
+
+      _show: function () {
+        var tt = this.$$('paper-tooltip');
+        tt.show();
+        console.log(tt.id)
+      },
+      _hide: function () {
+        var tt = this.$$('paper-tooltip');
+        tt.hide();
+      },
+
+    });
+  </script>
+</dom-module>

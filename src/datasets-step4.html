@@ -1,0 +1,123 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-input/paper-input-container.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="datasets-columns.html">
+
+
+
+<dom-module id="datasets-step4">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+        padding: 32px;
+        height: 100%;
+        position: relative !important;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 900px;
+      }
+      
+      .first {
+        margin-bottom: 50px;
+      }
+      
+      #header {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+      }
+      
+      #columnsToggle {
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: space-around;
+        text-transform: uppercase;
+      }
+      
+      paper-toggle-button {
+        margin: 10px 40px 10px 20px;
+      }
+      
+      paper-dropdown-menu {
+        width: 200px;
+      }
+      
+      paper-input {
+        width: 200px;
+      }
+      
+      paper-listbox {
+        text-transform: uppercase;
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      datasets-columns {
+        width: 100%;
+      }
+    </style>
+
+    <div id="wrapper">
+      <h5>Limit Columns or Rows Ingested</h5>
+      <p>You can chose to only ingest certain rows by selecting them or deselecting them. You can also add more “human readable” names to the columns, and verify what kind of data is in the column. Additionally you can scroll down to edit your initial SQL Statement or Visual Query</p>
+      <h6>learn more</h6>
+      <paper-material class="paperContentBlock first">
+        <div id="header">
+          <paper-input placeholder="Column_1_Name" no-label-float></paper-input>
+          <paper-dropdown-menu id="selector" no-label-float>
+            <paper-listbox class="dropdown-content" selected="1">
+              <paper-item>------</paper-item>
+              <paper-item>Currency</paper-item>
+              <paper-item>Numerical</paper-item>
+              <paper-item>Categorical</paper-item>
+              <paper-item>Boolean</paper-item>
+            </paper-listbox>
+          </paper-dropdown-menu>
+          <div id="columnsToggle">
+            <p>Select All Columns</p>
+            <paper-toggle-button></paper-toggle-button>
+          </div>
+        </div>
+        <datasets-columns></datasets-columns>
+      </paper-material>
+      <h5>Limit Columns or Rows Ingested</h5>
+      <p>You can chose to only ingest certain rows by selecting them or deselecting them. You can also add more “human readable” names to the columns, and verify what kind of data is in the column. Additionally you can scroll down to edit your initial SQL Statement or Visual Query</p>
+      <h6>learn more</h6>
+      <paper-material class="paperContentBlock second">
+        <paper-input id="inputTitle" placeholder="SQL STATEMENT"></paper-input>
+        <h5>Visual SQL Entry</h5>
+        <datasets-sql></datasets-sql>
+      </paper-material>
+    </div>
+
+
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'datasets-step4',
+
+
+    });
+  </script>
+</dom-module>

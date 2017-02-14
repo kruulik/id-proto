@@ -1,0 +1,164 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/iron-list/iron-list.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/iron-selector/iron-multi-selectable.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selectable.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selection.html">
+<link rel="import" href="shared-styles.html">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+<!--Also called "Ingest Data"-->
+
+<dom-module id="datasets-columns">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+      
+      #container {
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+      }
+      
+      #container::-webkit-scrollbar {
+        display: none;
+      }
+      
+      .dataColumn {
+        background: white;
+        margin: 5px;
+        width: 230px;
+        height: 368px;
+        display: flex;
+        flex-shrink: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 2px;
+        border: solid 1px rgba(0, 0, 0, .12);
+      }
+      
+      .dataColumn.iron-selected {
+        background: var(--doc-light-blue);
+      }
+      
+      .dataColumn.iron-selected .columnHeader {
+        background: var(--doc-blue);
+      }
+      
+      .dataColumn.iron-selected .title,
+      .dataColumn.iron-selected .dataType,
+      .dataColumn.iron-selected .icon {
+        color: white;
+        --iron-icon-fill-color: white !important;
+      }
+      
+      .columnHeader {
+        box-sizing: border-box;
+        padding: 5px;
+        height: 60px;
+        width: 100%;
+        border-bottom: solid 1px rgba(0, 0, 0, .12);
+      }
+      
+      .cell {
+        color: var(--doc-gray-2);
+        line-height: 2.1em;
+        height: 40px;
+        width: 100%;
+        border-bottom: solid 1px rgba(0, 0, 0, .12);
+      }
+      
+      .title,
+      .dataType {
+        width: 175px;
+        margin-left: 5px;
+        text-align: left;
+        float: left;
+        clear: both;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      
+      .title {
+        color: var(--doc-gray-3);
+        font-size: 16px;
+        text-transform: uppercase;
+      }
+      
+      .dataType {
+        color: var(--doc-gray-2);
+        font-size: 16px;
+      }
+      
+      .icon {
+        --iron-icon-fill-color: var(--doc-blue);
+        top: 8px;
+        margin: auto;
+        --iron-icon-height: 32px;
+        --iron-icon-width: 32px;
+      }
+    </style>
+
+    <iron-ajax auto url="datasets-data-v2.json" handle-as="json" last-response="{{columns}}"></iron-ajax>
+
+    <!--*** find notes on Polymer's handling of json arrays ***-->
+
+    <iron-selector id="container" multi selected-value="[0]" on-iron-select="_updateStyles">
+      <template is="dom-repeat" items="{{columns}}" as="header">
+        <paper-material class="dataColumn">
+          <div class="columnHeader">
+            <div class="title">{{header.title}}</div>
+            <div class="dataType">{{header.dataType}}</div>
+            <iron-icon class="icon" icon="icons:check-circle"></iron-icon>
+          </div>
+          <template is="dom-repeat" items="{{header.data}}" as="data">
+            <div class="cell">{{data.value}}</div>
+          </template>
+        </paper-material>
+      </template>
+    </iron-selector>
+
+
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'datasets-columns',
+
+      properties: {
+        title: String,
+        dataType: String,
+        data: String,
+        value: String
+      },
+
+      _updateStyles: function () {
+        this.updateStyles();
+      }
+
+    });
+  </script>
+</dom-module>

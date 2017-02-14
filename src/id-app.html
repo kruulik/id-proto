@@ -118,24 +118,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     </style>
 
-
-  
-   
-
-    <app-location route="{{route}}"></app-location>
+    <app-location  route="{{route}}" ></app-location>
     <app-route
         route="{{route}}"
         pattern="/:page"
         data="{{routeData}}"
         tail="{{subroute}}"></app-route>
 
-   
     <paper-drawer-panel id="paperDrawerPanel" drawer-width="208px">
       <div drawer >
       
        <div id="drawerContents">
 
-        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+        <iron-selector selected="{{page}}" attr-for-selected="name" class="drawer-list" role="navigation">
                 <div class="navHeader">Home</div>
             <a name="dashboard" href="/dashboard"><div class="navLink">Dashboard</div></a>
             <a name="datasets" href="/datasets"><div class="navLink">Datasets</div></a>
@@ -156,9 +151,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div main>
        <div size="100">
         <iron-pages
-            selected="[[page]]"
+            selected="{{page}}"
             attr-for-selected="name"
-            fallback-selection="view404"
             role="main"
             id="mainPages">
           <my-dashboard name="dashboard"></my-dashboard>
@@ -188,7 +182,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           reflectToAttribute: true,
           observer: '_pageChanged',
         },
+          
       },
+        
 
       observers: [
         '_routePageChanged(routeData.page)',
@@ -203,9 +199,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.importHref(resolvedPageUrl, null, this._showPage404, true);
       },
 
-      _showPage404: function() {
-        this.page = 'view404';
-      },
     });
   </script>
 </dom-module>
