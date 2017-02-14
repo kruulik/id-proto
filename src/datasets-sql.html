@@ -1,0 +1,190 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-input/paper-input-container.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="shared-styles.html">
+
+
+<dom-module id="datasets-sql">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+      
+      #content {
+        background: white;
+        border-radius: 2px;
+        border: solid 1px rgba(0, 0, 0, .12);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 10px 30px 10px;
+        box-sizing: border-box;
+      }
+      
+      #innerContainer {
+        width: 100%;
+        height: 100px;
+        background: #F5F5F5;
+        border-radius: 2px;
+        border: solid 1px rgba(0, 0, 0, .12);
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 5px;
+        box-sizing: border-box;
+      }
+      
+      #menusContainer {
+        background: white;
+        border-radius: 2px;
+        border: solid 1px rgba(0, 0, 0, .12);
+        display: flex;
+        margin-left: 40px;
+      }
+      
+      #inputTitle {
+        width: 440px;
+      }
+      
+      #item,
+      paper-dropdown-menu {
+        width: 150px;
+        align-self: flex-start
+      }
+      
+      paper-listbox {
+        text-transform: uppercase;
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      #menusContainer paper-dropdown-menu {
+        height: 40px;
+        box-sizing: border-box;
+      }
+      
+      .blankSpace {
+        flex-grow: 10;
+      }
+      
+      #menusContainer paper-button {
+        height: 40px;
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+      
+      .delete {
+        color: red;
+        line-height: 1.2em;
+      }
+      
+      .add {
+        color: var(--doc-blue);
+        line-height: 1.2em;
+      }
+      
+      #toggle::before {
+        content: "";
+        height: 55px;
+        width: 55px;
+        border-left: 3px solid var(--doc-gray-1);
+        border-bottom: 3px solid var(--doc-gray-1);
+        border-bottom-left-radius: 2px;
+        position: absolute;
+        left: 20px;
+        top: 10px;
+      }
+      
+      #toggle {
+        height: 30px;
+        display: flex;
+        text-transform: uppercase;
+        color: var(--doc-blue);
+        margin-bottom: 10px;
+      }
+      
+      .and {
+        background: white;
+        border-radius: 2px 0px 0px 2px;
+        border: solid 1px rgba(0, 0, 0, .12);
+        padding: 2px;
+      }
+      
+      .or {
+        background: white;
+        border-radius: 0px 2px 2px 0px;
+        border: solid 1px rgba(0, 0, 0, .12);
+        padding: 2px;
+      }
+    </style>
+
+    <div id="wrapper">
+
+
+
+      <paper-material id="innerContainer">
+        <div id="toggle">
+          <paper-material class="and">and</paper-material>
+          <paper-material class="or">or</paper-material>
+        </div>
+
+        <paper-material id="menusContainer">
+
+          <paper-dropdown-menu id="selector" no-label-float>
+            <paper-listbox class="dropdown-content" selected="1">
+              <paper-item>------</paper-item>
+              <paper-item>Category</paper-item>
+              <paper-item>Price</paper-item>
+              <paper-item>Name</paper-item>
+              <paper-item>Identifier</paper-item>
+            </paper-listbox>
+          </paper-dropdown-menu>
+          <paper-dropdown-menu id="operator" no-label-float>
+            <paper-listbox class="dropdown-content" selected="1">
+              <paper-item>------</paper-item>
+              <paper-item>Equal</paper-item>
+              <paper-item>Not Equal</paper-item>
+              <paper-item>In</paper-item>
+              <paper-item>Not In</paper-item>
+              <paper-item>Is Null</paper-item>
+              <paper-item>Is Not Null</paper-item>
+            </paper-listbox>
+          </paper-dropdown-menu>
+          <paper-input id="item" placeholder="Enter Value" no-label-float></paper-input>
+          <div class="blankSpace"></div>
+          <paper-button class="add">add rule</paper-button>
+          <paper-button class="delete">delete</paper-button>
+
+        </paper-material>
+
+      </paper-material>
+
+    </div>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'datasets-sql',
+
+
+
+
+    });
+  </script>
+</dom-module>

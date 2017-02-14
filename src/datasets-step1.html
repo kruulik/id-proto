@@ -13,60 +13,64 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="button-card.html">
 
-<!--Also called "Ingest Data"-->
+
 
 <dom-module id="datasets-step1">
-    <template>
-        <style include="shared-styles">
-            :host {
-                display: block;
-                padding: 32px;
-                height: 100%;
-                position: relative !important;
-            }
-           
-            #buttons {
-                display: flex;
-                justify-content: center;
-                flex-wrap: nowrap;
-                overflow-x: scroll;
-                width: 100%;
-            }
-        </style>
-        <div>
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+        padding: 32px;
+        height: 100%;
+        position: relative !important;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 900px;
+      }
+    
+      
+      #buttons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+        width: 100%;
+      }
+    </style>
+    <div>
 
-            <div id="buttons">
-                <button-card img="../images/connect_database.png" caption="Connect to Database"></button-card>
-                <button-card img="../images/upload_file.png" caption="Upload Data File" on-click="_onClick"></button-card>
-            </div>
-            <h5>Select Datasource</h5>
-            <p>Block of text explaining the different data sources, and that the “UPLOAD DATA FILE” button includes a multitude of data sources (S3, Dropbox, etc).
-                <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt in orci non luctus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla facilisi. Integer sed massa quis orci laoreet pulvinar vitae vel sapien. Aliquam non vestibulum purus. Donec purus libero, gravida eget sollicitudin eget, vulputate ac ligula.</p>
-        </div>
-    </template>
+      <div id="buttons">
+        <button-card img="../images/connect_database.png" caption="Connect to Database"></button-card>
+        <button-card img="../images/upload_file.png" caption="Upload Data File" on-click="_onClick"></button-card>
+      </div>
+      <h5>Select Datasource</h5>
+      <p>Block of text explaining the different data sources, and that the “UPLOAD DATA FILE” button includes a multitude of data sources (S3, Dropbox, etc).
+        <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt in orci non luctus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla facilisi. Integer sed massa quis orci laoreet pulvinar vitae vel sapien. Aliquam non vestibulum purus. Donec purus libero, gravida eget sollicitudin eget, vulputate ac ligula.</p>
+    </div>
+  </template>
 
-    <script>
-        Polymer({
-            is: 'datasets-step1',
-            
-            //probably more efficient way to select #navButtons...
-//            ready: function () {
-//                var buttons = this.parentNode.parentNode.querySelector('#navButtons');
-//                buttons.style.display = "none";
-//                console.log(buttons);
-//            },
-            
-            //parentNode will access the neon-animated-page; no need for automatic node finding (need to clarify and understand this further for use in portfolio-app)
-            _onClick: function () {
-                var steps = this.parentNode;
-                steps.playAnimation('entry');
-                steps.selectNext();
-//                console.log(steps);
-            },
-           
+  <script>
+    Polymer({
+      is: 'datasets-step1',
 
+      //probably more efficient way to select #navButtons...
+      //            ready: function () {
+      //                var buttons = this.parentNode.parentNode.querySelector('#navButtons');
+      //                buttons.style.display = "none";
+      //                console.log(buttons);
+      //            },
+
+      //parentNode will access the neon-animated-page; no need for automatic node finding (need to clarify and understand this further for use in portfolio-app)
+      _onClick: function () {
+        var steps = this.parentNode;
+        steps.playAnimation('entry');
+        steps.selectNext();
+        //                console.log(steps);
+      },
 
 
-        });
-    </script>
+
+
+    });
+  </script>
 </dom-module>

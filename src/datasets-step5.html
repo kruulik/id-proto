@@ -9,32 +9,139 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-input/paper-input-container.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-toggle-button/paper-toggle-button.html">
 <link rel="import" href="shared-styles.html">
 
-<!--Also called "Ingest Data"-->
+<link rel="import" href="datasets-usergroups.html">
+
+<!--Also called "Ingest Data" in UXpin Proto-->
 
 <dom-module id="datasets-step5">
-    <template>
-        <style include="shared-styles">
-            :host {
-                display: block;
-                padding: 32px;
-                height: 100%;
-                position: relative !important;
-            }
-        </style>
-        <div>
-            <h1>Woop</h1>
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+        padding: 32px;
+        height: 100%;
+        position: relative !important;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 900px;
+      }
+     
+      
+      .sidebar {
+        margin-left: -10px;
+        margin-top: -10px;
+        margin-bottom: -30px;
+        min-height: 300px;
+        height: 600px;
+        width: 256px;
+        flex-shrink: 0;
+        background: white;
+        border-radius: 2px;
+        border: solid 1px rgba(0, 0, 0, .12);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0px;
+      }
+      
+      .main {
+        flex-direction: row;
+        margin-bottom: 50px;
+      }
+      
+      .columnsWrapper {
+        min-width: 200px;
+        margin-left: 10px;
+        align-self: stretch;
+        box-sizing: border-box;
+      }
+      
+      paper-listbox {
+        text-transform: uppercase;
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      #header {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+      }
+      
+      #columnsToggle {
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: space-around;
+        text-transform: uppercase;
+      }
+      
+      paper-toggle-button {
+        margin: 10px 40px 10px 20px;
+      }
+      
+      paper-dropdown-menu {
+        width: 200px;
+      }
+      
+      paper-input {
+        width: 200px;
+      }
+      
+      datasets-sql {
+        margin-top: 30px;
+      }
+    </style>
+
+    <div id="wrapper">
+      <h5>Limit Columns or Rows Ingested</h5>
+      <p>You can chose to only ingest certain rows by selecting them or deselecting them. You can also add more “human readable” names to the columns, and verify what kind of data is in the column. Additionally you can scroll down to edit your initial SQL Statement or Visual Query</p>
+      <h6>learn more</h6>
+      <paper-material class="paperContentBlock main">
+        <paper-material class="paperContentBlock sidebar">
+          <paper-dropdown-menu id="selector" no-label-float>
+            <paper-listbox class="dropdown-content" selected="0">
+              <paper-item>Standard Users</paper-item>
+              <paper-item>Option</paper-item>
+              <paper-item>Option</paper-item>
+              <paper-item>Option</paper-item>
+              <paper-item>Option</paper-item>
+            </paper-listbox>
+          </paper-dropdown-menu>
+          <!--user groups will go here-->
+          <datasets-usergroups></datasets-usergroups>
+        </paper-material>
+        <div class="columnsWrapper">
+          <div id="header">
+            <paper-input placeholder="Column_1_Name" no-label-float></paper-input>
+            <div id="columnsToggle">
+              <p>Select All Columns</p>
+              <paper-toggle-button></paper-toggle-button>
+            </div>
+          </div>
+          <datasets-columns></datasets-columns>
+          <datasets-sql></datasets-sql>
         </div>
-    </template>
+      </paper-material>
 
-    <script>
-        Polymer({
-            is: 'datasets-step5',
+    </div>
 
+  </template>
 
+  <script>
+    Polymer({
+      is: 'datasets-step5',
 
-
-        });
-    </script>
+    });
+  </script>
 </dom-module>

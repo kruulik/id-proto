@@ -32,179 +32,188 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <!--Also called "Ingest Data"-->
 
 <dom-module id="my-datasets">
-    <template>
-        <style include="shared-styles">
-            :host {
-                display: block;
-                padding: 32px;
-            }
-            
-            #tabOne {
-                z-index: 502;
-            }
-            
-            #tabTwo {
-                z-index: 501;
-            }
-            
-            #tabThree {
-                z-index: 500;
-            }
-            
-            paper-tabs {
-                font-size: 14px;
-                height: 30px !important;
-                width: 600px;
-                margin-left: auto;
-                margin-right: auto;
-                background-color: transparent;
-                border-radius: 5px;
-                overflow: visible !important;
-                box-shadow: 0px 2px 4px rgba(0, 0, 0, .5);
-            }
-            
-            paper-tab:nth-child(n+2) {
-                margin-left: -3px;
-            }
-            
-            paper-tab:nth-last-child(n+2) {
-                border-radius: 5px 0px 0px 5px;
-            }
-            
-            paper-tab {
-                /*                box-sizing: border-box;*/
-                position: relative;
-                background-color: white;
-                width: 100%;
-                height: 100%;
-                text-align: center;
-                line-height: 2em;
-                border-radius: 5px;
-                /*                box-shadow: 0px 2px 4px rgba(0, 0, 0, .5);*/
-                overflow: visible !important;
-            }
-            
-            paper-tab:nth-last-child(n+2)::before {
-                content: "";
-                position: absolute;
-                width: 0;
-                height: 0;
-                top: 35.5px;
-                left: 99%;
-                border: 15px solid black;
-                border-color: transparent transparent white white;
-                transform-origin: 0 0;
-                transform: rotate(-135deg);
-                box-shadow: -3px 2px 2px 0 rgba(0, 0, 0, 0.2);
-            }
-            
-            paper-tab:nth-last-child(n+2).iron-selected::before {
-                content: "";
-                position: absolute;
-                width: 0;
-                height: 0;
-                top: 35.5px;
-                left: 99%;
-                border: 15px solid black;
-                border-color: transparent transparent #03A9F4 #03A9F4;
-                transform-origin: 0 0;
-                transform: rotate(-135deg);
-                box-shadow: -3px 2px 1px 0 rgba(0, 0, 0, 0.2);
-            }
-            
-            paper-tab.iron-selected {
-                background-color: var(--doc-blue);
-                color: white;
-            }
-            
-            #tabsContent {
-                overflow: visible !important;
-            }
-            
-            #tabsComtainer {
-                overflow: visible !important;
-            }
-            
-            neon-animatable-pages {
-                height: 100%;
-                position: relative;
-            }
-        </style>
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+        padding: 32px;
+      }
+      
+      #tabOne {
+        z-index: 502;
+      }
+      
+      #tabTwo {
+        z-index: 501;
+      }
+      
+      #tabThree {
+        z-index: 500;
+      }
+      
+      paper-tabs {
+        font-size: 14px;
+        height: 30px !important;
+        width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: transparent;
+        border-radius: 5px;
+        overflow: visible !important;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, .5);
+      }
+      
+      paper-tab:nth-child(n+2) {
+        margin-left: -3px;
+      }
+      
+      paper-tab:nth-last-child(n+2) {
+        border-radius: 5px 0px 0px 5px;
+      }
+      
+      paper-tab {
+        /*                box-sizing: border-box;*/
+        position: relative;
+        background-color: white;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        line-height: 2em;
+        border-radius: 5px;
+        /*                box-shadow: 0px 2px 4px rgba(0, 0, 0, .5);*/
+        overflow: visible !important;
+      }
+      
+      paper-tab:nth-last-child(n+2)::before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: 35.5px;
+        left: 99%;
+        border: 15px solid black;
+        border-color: transparent transparent white white;
+        transform-origin: 0 0;
+        transform: rotate(-135deg);
+        box-shadow: -3px 2px 2px 0 rgba(0, 0, 0, 0.2);
+      }
+      
+      paper-tab:nth-last-child(n+2).iron-selected::before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: 35.5px;
+        left: 99%;
+        border: 15px solid black;
+        border-color: transparent transparent #03A9F4 #03A9F4;
+        transform-origin: 0 0;
+        transform: rotate(-135deg);
+        box-shadow: -3px 2px 1px 0 rgba(0, 0, 0, 0.2);
+      }
+      
+      paper-tab.iron-selected {
+        background-color: var(--doc-blue);
+        color: white;
+      }
+      
+      #tabsContent {
+        overflow: visible !important;
+      }
+      
+      #tabsComtainer {
+        overflow: visible !important;
+      }
+      
+      neon-animatable-pages {
+       
+        height: 100%;
+/*
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+*/
+      }
+      
+      .iron-selected {
+        
+      }
+    </style>
 
-        <!--This app-route is taken directly from Polymer's example on paper-tabs. Need to find a better way to ensure each tab stays highlighted when cycling through steps. Might just get rid of paper-tabs entirely or create another method to change it emperically. **Was hoping to use an "out-of-the-box" solution if there is one**-->
+    <!--This app-route is taken directly from Polymer's example on paper-tabs. Need to find a better way to ensure each tab stays highlighted when cycling through steps. Might just get rid of paper-tabs entirely or create another method to change it emperically. **Was hoping to use an "out-of-the-box" solution if there is one**-->
 
-        <app-route route="{{route}}" pattern="/tabs/:tabName" data="{{data}}"></app-route>
+    <app-route route="{{route}}" pattern=":tabName" data="{{data}}"></app-route>
 
-        <paper-tabs no-bar no-slide no-ink selected='{{tabName}}' attr-for-selected='name'>
-            <paper-tab id="tabOne" name='select_datasource'>Select Datasource</paper-tab>
-            <paper-tab id="tabTwo" name='define_data'>Define Data</paper-tab>
-            <paper-tab id="tabThree" name='security_parameters'>Security Paramaters</paper-tab>
-        </paper-tabs>
+    <paper-tabs no-bar no-slide no-ink selected='{{tabName}}' attr-for-selected='name'>
+      <paper-tab id="tabOne" name='select_datasource'>Select Datasource</paper-tab>
+      <paper-tab id="tabTwo" name='define_data'>Define Data</paper-tab>
+      <paper-tab id="tabThree" name='security_parameters'>Security Paramaters</paper-tab>
+    </paper-tabs>
 
-        <neon-animated-pages id="steps" selected='{{tabName}}' attr-for-selected='name'>
-            <datasets-step1 name='select_datasource'></datasets-step1>
-            <datasets-step2 name='select_datasource/'>2</datasets-step2>
-            <datasets-step3 name='define_data'></datasets-step3>
-            <datasets-step4 name='define_data/'></datasets-step4>
-            <datasets-step5 name='security_parameters'></datasets-step5>
-            <datasets-step6 name='security_parameters/'></datasets-step6>
-        </neon-animated-pages>
+    <neon-animated-pages id="steps" selected='{{tabName}}' attr-for-selected='name'>
+      <datasets-step1 name='select_datasource'></datasets-step1>
+      <datasets-step2 name='select_datasource/'></datasets-step2>
+      <datasets-step3 name='define_data'></datasets-step3>
+      <datasets-step4 name='define_data/'></datasets-step4>
+      <datasets-step5 name='security_parameters'></datasets-step5>
+      <!--            <datasets-step6 name='security_parameters/'></datasets-step6>-->
+    </neon-animated-pages>
 
 
-        <!--hidden$ passes tabName to the method; this way it is updated whenever the page is changed. Otherwise the controlls are stuck hidden.-->
-        <div id="controls" hidden$="{{_hideControls(tabName)}}">
-            <paper-button raised class="buttonNav" on-click="_onClickBack">Back</paper-button>
-            <paper-button raised class="buttonNav" on-click="_onClickNext">Next</paper-button>
-        </div>
-    </template>
+    <!--hidden$ passes tabName to the method; this way it is updated whenever the page is changed. Otherwise the controlls are stuck hidden.-->
+    <div id="controls" hidden$="{{_hideControls(tabName)}}">
+      <paper-button raised class="buttonNav" on-click="_onClickBack">Back</paper-button>
+      <paper-button raised class="buttonNav" on-click="_onClickNext">Next</paper-button>
+    </div>
+  </template>
 
-    <script>
-        Polymer({
-            is: 'my-datasets',
+  <script>
+    Polymer({
+      is: 'my-datasets',
 
-            behaviors: [Polymer.NeonAnimatableBehavior],
+      behaviors: [Polymer.NeonAnimatableBehavior],
 
-            properties: {
-                animationComfig: {
-                    value: function () {
-                        return {
-                            'entry': {
-                                name: 'slide-from-right-animation',
-                                node: this
-                            },
-                            'exit': {
-                                name: 'slide-left-animation',
-                                node: this
-                            }
-                        }
-                    }
-                }
-            },
-
-            _onClickNext: function () {
-                var steps = this.$.steps;
-                steps.playAnimation('entry');
-                steps.selectNext();
-            },
-            _onClickBack: function () {
-                var steps = this.$.steps;
-                steps.playAnimation('exit');
-                steps.selectPrevious();
-            },
-
-            attached: function () {
-                var steps = this.$.steps;
-                steps.selected = 'select_datasource';
-            },
-
-            _hideControls: function (tabName) {
-                if (this.tabName == 'select_datasource') {
-                    return true;
-                } else {
-                    return false;
-                }
+      properties: {
+        animationComfig: {
+          value: function () {
+            return {
+              'entry': {
+                name: 'slide-from-right-animation',
+                node: this
+              },
+              'exit': {
+                name: 'slide-left-animation',
+                node: this
+              }
             }
+          }
+        }
+      },
 
-        });
-    </script>
+      _onClickNext: function () {
+        var steps = this.$.steps;
+        steps.playAnimation('entry');
+        steps.selectNext();
+      },
+      _onClickBack: function () {
+        var steps = this.$.steps;
+        steps.playAnimation('exit');
+        steps.selectPrevious();
+      },
+
+      attached: function () {
+        var steps = this.$.steps;
+        steps.selected = 'select_datasource';
+      },
+
+      _hideControls: function (tabName) {
+        if (this.tabName == 'select_datasource') {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+    });
+  </script>
 </dom-module>

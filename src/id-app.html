@@ -182,7 +182,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           reflectToAttribute: true,
           observer: '_pageChanged',
         },
+          
       },
+        
 
       observers: [
         '_routePageChanged(routeData.page)',
@@ -197,9 +199,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.importHref(resolvedPageUrl, null, this._showPage404, true);
       },
 
-//      _showPage404: function() {
-//        this.page = 'view404';
-//      },
     });
   </script>
 </dom-module>
