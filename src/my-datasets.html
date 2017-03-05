@@ -20,6 +20,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/neon-animation/neon-animatable-behavior.html">
 <link rel="import" href="../bower_components/neon-animation/animations/slide-from-right-animation.html">
 <link rel="import" href="../bower_components/neon-animation/animations/slide-left-animation.html">
+<link rel="import" href="../bower_components/neon-animation/animations/fade-out-animation.html">
+<link rel="import" href="../bower_components/neon-animation/animations/fade-in-animation.html">
 <link rel="import" href="shared-styles.html">
 
 <link rel="import" href="datasets-step1.html">
@@ -27,7 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="datasets-step3.html">
 <link rel="import" href="datasets-step4.html">
 <link rel="import" href="datasets-step5.html">
-<link rel="import" href="datasets-step6.html">
+<!--<link rel="import" href="datasets-step6.html">-->
 
 <!--Also called "Ingest Data"-->
 
@@ -126,18 +128,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       
       neon-animatable-pages {
-       
         height: 100%;
-/*
+        /*
         display: flex;
         flex-direction: column;
         align-items: center;
 */
       }
       
-      .iron-selected {
-        
-      }
+      .iron-selected {}
     </style>
 
     <!--This app-route is taken directly from Polymer's example on paper-tabs. Need to find a better way to ensure each tab stays highlighted when cycling through steps. Might just get rid of paper-tabs entirely or create another method to change it emperically. **Was hoping to use an "out-of-the-box" solution if there is one**-->
@@ -150,7 +149,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-tab id="tabThree" name='security_parameters'>Security Paramaters</paper-tab>
     </paper-tabs>
 
-    <neon-animated-pages id="steps" selected='{{tabName}}' attr-for-selected='name'>
+    <neon-animated-pages id="steps" selected='{{tabName}}' attr-for-selected='name' >
       <datasets-step1 name='select_datasource'></datasets-step1>
       <datasets-step2 name='select_datasource/'></datasets-step2>
       <datasets-step3 name='define_data'></datasets-step3>
@@ -162,8 +161,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <!--hidden$ passes tabName to the method; this way it is updated whenever the page is changed. Otherwise the controlls are stuck hidden.-->
     <div id="controls" hidden$="{{_hideControls(tabName)}}">
-      <paper-button raised class="buttonNav" on-click="_onClickBack">Back</paper-button>
-      <paper-button raised class="buttonNav" on-click="_onClickNext">Next</paper-button>
+      <paper-button raised class="buttonNav back" on-click="_onClickBack">Back</paper-button>
+      <paper-button raised class="buttonNav next" on-click="_onClickNext">Next</paper-button>
     </div>
   </template>
 
@@ -171,34 +170,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer({
       is: 'my-datasets',
 
-      behaviors: [Polymer.NeonAnimatableBehavior],
+     
 
-      properties: {
-        animationComfig: {
-          value: function () {
-            return {
-              'entry': {
-                name: 'slide-from-right-animation',
-                node: this
-              },
-              'exit': {
-                name: 'slide-left-animation',
-                node: this
-              }
-            }
-          }
+      //This does not update the URL even when page switches//
+      
+      _onClickNext: function () {
+        var steps = this.$.steps;
+        if (steps.selected == 'security_parameters') {
+          var page = this.parentNode;
+          page.selected = 'dashboard';
+          console.log(page);
+        } else {
+          steps.selectNext();
         }
       },
 
-      _onClickNext: function () {
-        var steps = this.$.steps;
-        steps.playAnimation('entry');
-        steps.selectNext();
-      },
+
       _onClickBack: function () {
         var steps = this.$.steps;
-        steps.playAnimation('exit');
         steps.selectPrevious();
+        steps.playAnimation('exit');
       },
 
       attached: function () {
