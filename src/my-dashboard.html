@@ -18,141 +18,141 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <!--<link rel="import" href="my-datasets-card.html">-->
 
 <dom-module id="my-dashboard">
-    <template>
-        <style include="shared-styles">
-            :host {
-                display: block;
-                padding: 32px;
-            }
-            
-            .sectionHeader {
-                width: 100%;
-                display: flex;
-                align-items: center;
-                margin-bottom: 10px;
-                margin-top: 10px;
-                /*                flex-wrap: nowrap;*/
-                /*                height: 30px;*/
-            }
-            
-            .divider {
-                height: 2px;
-                width: 100%;
-                box-shadow: 0px 1px 1px #ffffff;
-                background-color: #C2C2C2;
-                /*                align-self: baseline;*/
-            }
-            
-            .sectionHeader h4 {
-                flex-shrink: 0;
-                margin: 0px 10px 0px 0px;
-                /*                align-self: center;*/
-            }
-            
-            #dashboardContent .container:nth-child(n+2) {
-                margin-top: 45px;
-            }
-            
-            .tasksContainer paper-button {
-                height: 152px;
-                width: 152px;
-                background-color: white;
-                margin: 5px;
-                flex-shrink: 0;
-                display: flex;
-                flex-direction: column;
-                font-size: 14px;
-                margin-bottom: 10px;
-                margin-top: 0px;
-                font-size: 14px;
-            }
-            
-            paper-button.squareCard:hover {
-                background-color: dodgerblue;
-                color: white;
-            }
-            
-            .tasksContainer {
-                display: flex;
-/*                justify-content: center;*/
-                flex-wrap: nowrap;
-                overflow-x: scroll;
-                width: 100%;
-            }
-            
-            .tasksContainer iron-image {
-                height: 60px;
-                width: 60px;
-                margin: auto;
-                margin-top: 30px;
-            }
-        </style>
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+        padding: 32px;
+      }
+      
+      .sectionHeader {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        /*                flex-wrap: nowrap;*/
+        /*                height: 30px;*/
+      }
+      
+      .divider {
+        height: 2px;
+        width: 100%;
+        box-shadow: 0px 1px 1px #ffffff;
+        background-color: #C2C2C2;
+        /*                align-self: baseline;*/
+      }
+      
+      .sectionHeader h4 {
+        flex-shrink: 0;
+        margin: 0px 10px 0px 0px;
+        /*                align-self: center;*/
+      }
+      
+      #dashboardContent .container:nth-child(n+2) {
+        margin-top: 45px;
+      }
+      
+      .tasksContainer paper-button {
+        height: 152px;
+        width: 152px;
+        background-color: white;
+        margin: 5px;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+        margin-bottom: 10px;
+        margin-top: 0px;
+        font-size: 14px;
+      }
+      
+      paper-button.squareCard:hover {
+        background-color: dodgerblue;
+        color: white;
+      }
+      
+      .tasksContainer {
+        display: flex;
+        /*                justify-content: center;*/
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+        width: 100%;
+      }
+      
+      .tasksContainer iron-image {
+        height: 60px;
+        width: 60px;
+        margin: auto;
+        margin-top: 30px;
+      }
+    </style>
 
-        <div id="dashboardContent">
+    <div id="dashboardContent">
 
-            <div class="container">
-                <div class="sectionHeader">
-                    <h4>frequent tasks</h4>
-                    <div class="divider"></div>
-                </div>
-                <div class="tasksContainer">
-                    <!--Data-binding is used to pass {{img}} and {{caption}} attributes to the button-card element, which handles styling and hover-states-->
-                    <button-card img="../images/new_workspaces.png" caption="New Workspace"></button-card>
-                    <button-card img="../images/new_learning_models.png" caption="New Learning Model"></button-card>
-                    <button-card img="../images/add_datasource.png" caption="Add Datasource" on-tap="_datasets"></button-card>
-                    <button-card img="../images/share_workspace.png" caption="Share Workspace"></button-card>
-                    <button-card img="../images/add_user.png" caption="Add User"></button-card>
-                </div>
-            </div>
-            <div class="container">
-                <div class="sectionHeader">
-                    <h4>quick view</h4>
-                    <div class="divider"></div>
-                </div>
-                <h5>Add Charts</h5>
-                <p>You haven’t pinned any charts yet. Would you like to add charts from your saved workspaces?</p>
-                <h6>Get Started</h6>
-            </div>
-
-            <div class="container">
-                <div class="sectionHeader">
-                    <h4>favorite workspaces</h4>
-                    <div class="divider"></div>
-                </div>
-                <my-workspaces-card></my-workspaces-card>
-            </div>
-            <div class="container">
-                <div class="sectionHeader">
-                    <h4>activity highlights</h4>
-                    <div class="divider"></div>
-                </div>
-                <my-highlights-card></my-highlights-card>
-            </div>
+      <div class="container">
+        <div class="sectionHeader">
+          <h4>frequent tasks</h4>
+          <div class="divider"></div>
         </div>
-    </template>
+        <div class="tasksContainer">
+          <!--Data-binding is used to pass {{img}} and {{caption}} attributes to the button-card element, which handles styling and hover-states-->
+          <button-card img="../images/new_workspaces.png" caption="New Workspace"></button-card>
+          <button-card img="../images/new_learning_models.png" caption="New Learning Model"></button-card>
+          <button-card img="../images/add_datasource.png" caption="Add Datasource" on-tap="_datasets"></button-card>
+          <button-card img="../images/share_workspace.png" caption="Share Workspace"></button-card>
+          <button-card img="../images/add_user.png" caption="Add User"></button-card>
+        </div>
+      </div>
+      <div class="container">
+        <div class="sectionHeader">
+          <h4>quick view</h4>
+          <div class="divider"></div>
+        </div>
+        <h5>Add Charts</h5>
+        <p>You haven’t pinned any charts yet. Would you like to add charts from your saved workspaces?</p>
+        <h6>Get Started</h6>
+      </div>
 
-    <script>
-        Polymer({
-            is: 'my-dashboard',
-            
-            //This does not update the URL... something to do with app-route or app-location in the parent node. Need to review, but so far does not cause issues. 
-//            _datasets: function (page) {
-//                var page = this.parentNode;
-//                page.selected = 'datasets';
-//                console.log(page);
-//            },
-            
-            _datasets: function (page) {
-                var page = this.parentNode;
-                page.selected = 'datasets';
-                console.log(page);
-            },
-            
-//            _onDatasetsClick: function (event) {
-//                var pages = this.$$('#mainPages');
-//                var sections = this.$$('#sections');
-//                this.$.pages.selected = 1;
-//            },
-        });
-    </script>
+      <div class="container">
+        <div class="sectionHeader">
+          <h4>favorite workspaces</h4>
+          <div class="divider"></div>
+        </div>
+        <my-workspaces-card></my-workspaces-card>
+      </div>
+      <div class="container">
+        <div class="sectionHeader">
+          <h4>activity highlights</h4>
+          <div class="divider"></div>
+        </div>
+        <my-highlights-card></my-highlights-card>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-dashboard',
+
+      //This does not update the URL... something to do with app-route or app-location in the parent node. Need to review, but so far does not cause issues. 
+      //            _datasets: function (page) {
+      //                var page = this.parentNode;
+      //                page.selected = 'datasets';
+      //                console.log(page);
+      //            },
+
+      _datasets: function (page) {
+        var page = this.parentNode;
+        page.selected = 'datasets';
+        console.log(page);
+      },
+
+      //            _onDatasetsClick: function (event) {
+      //                var pages = this.$$('#mainPages');
+      //                var sections = this.$$('#sections');
+      //                this.$.pages.selected = 1;
+      //            },
+    });
+  </script>
 </dom-module>
