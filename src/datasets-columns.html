@@ -122,6 +122,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <iron-ajax auto url="datasets-data-v2.json" handle-as="json" last-response="{{columns}}"></iron-ajax>
+<!--    <iron-ajax auto url="datasets-columns-data.json" handle-as="json" last-response="{{columns}}"></iron-ajax>-->
 
     <!--*** find notes on Polymer's handling of json arrays ***-->
 
@@ -136,6 +137,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <template is="dom-repeat" items="{{header.data}}" as="data">
             <div class="cell">{{data.value}}</div>
           </template>
+           
         </paper-material>
       </template>
     </iron-selector>
@@ -152,7 +154,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         title: String,
         dataType: String,
         data: String,
-        value: String
+        values: Array,
+        reflectToAttribute: true, 
+        notify: true, 
       },
 
       _updateStyles: function () {
