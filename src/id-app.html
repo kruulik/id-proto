@@ -127,6 +127,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <app-location route="{{route}}"></app-location>
+
     <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
 
     <paper-drawer-panel id="paperDrawerPanel" drawer-width="208px">
@@ -196,19 +197,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer({
       is: 'id-app',
 
+
+
       properties: {
         page: {
           type: String,
           reflectToAttribute: true,
           observer: '_pageChanged',
-        },
+          notify: true
+        }
 
       },
 
 
       observers: [
-        '_routePageChanged(routeData.page)',
-      ],
+              '_routePageChanged(routeData.page)'
+            ],
 
       _routePageChanged: function (page) {
         this.page = page || 'dashboard';
@@ -218,6 +222,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
         this.importHref(resolvedPageUrl, null, this._showPage404, true);
       },
+
+
 
     });
   </script>

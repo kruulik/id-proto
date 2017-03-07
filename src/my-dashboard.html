@@ -102,6 +102,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <button-card img="../images/add_datasource.png" caption="Add Datasource" on-tap="_datasets"></button-card>
           <button-card img="../images/share_workspace.png" caption="Share Workspace"></button-card>
           <button-card img="../images/add_user.png" caption="Add User"></button-card>
+                    
         </div>
       </div>
       <div class="container">
@@ -134,25 +135,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     Polymer({
       is: 'my-dashboard',
+ 
+            _datasets: function (page) {
+              var page = this.parentNode;
+              page.selected = 'datasets';
 
-      //This does not update the URL... something to do with app-route or app-location in the parent node. Need to review, but so far does not cause issues. 
-      //            _datasets: function (page) {
-      //                var page = this.parentNode;
-      //                page.selected = 'datasets';
-      //                console.log(page);
-      //            },
+            },
 
-      _datasets: function (page) {
-        var page = this.parentNode;
-        page.selected = 'datasets';
-        console.log(page);
-      },
 
-      //            _onDatasetsClick: function (event) {
-      //                var pages = this.$$('#mainPages');
-      //                var sections = this.$$('#sections');
-      //                this.$.pages.selected = 1;
-      //            },
     });
   </script>
 </dom-module>
